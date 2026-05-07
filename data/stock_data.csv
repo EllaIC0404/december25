@@ -1,0 +1,3 @@
+product_id,manufacturer_name,quantity_in_stock,supplier_contact,last_stock_update,price_per_unit,category,location_in_warehouse,reorder_threshold
+1,TechSavvy,312,969-870-6045,08/11/2023,704.69,Clothing,C3,4
+2,ElecTronix,369,488-811-9502,01/12/2023,391.26,Home decor,C3,20
