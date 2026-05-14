@@ -2,7 +2,7 @@ import csv
 import os
 import pytest
 
-from helpers import read_csv
+from helpers import read_csv, merge_data
 
 @pytest.fixture(scope="module")
 def stock_file():

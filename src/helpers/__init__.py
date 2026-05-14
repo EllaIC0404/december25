@@ -17,6 +17,18 @@ def read_csv(filename):
         #    new_data.append(new_row)
     return data
 
+def merge_data(list1, list2):
+    joined_ids = []
+    for row in list1:
+        combined_list = []
+        for row2 in list2:
+            if row[0] == row2[0] and row[0] not in joined_ids:
+                combined_list.append(row + row2[1:])
+                joined_ids.append(row[0])
+        if row[0] not in joined_ids:
+            combined_list.append(row)
+            joined_ids.append(row[0])
+    return combined_list
 
 def merge_data(stock_df: DataFrame, sales_df: DataFrame) -> DataFrame:
     # Calculate quantity sold per product_id by summing sales
