@@ -8,7 +8,13 @@ def read_csv(filename):
         data = [[int(item) if item.isnumeric() else item for item in row] for row in data_reader]
         # new_data = []
         # for row in data_reader:
-        #    
+        #    new_row = []
+        #    for item in row:
+        #        if item.isnumeric():
+        #            new_row.append(int(item))
+        #        else:
+        #            new_row.append(item)
+        #    new_data.append(new_row)
     return data
 
 

@@ -8,3 +8,6 @@ def main():
     
     merged_data = merge_data(stock_data, sales_data)
     processed_data = update_stock(merged_data)
+
+if __name__ == "__main__":
+    sys.exit(main())
