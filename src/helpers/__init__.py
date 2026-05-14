@@ -23,14 +23,15 @@ def merge_data(stock_df: DataFrame, sales_df: DataFrame) -> DataFrame:
     # Rename 'sales' column to 'quantity_sold' for clarity
     sales_data_dedup = sales_df.groupby('product_id')['sales'].sum().reset_index()
     sales_data_dedup.rename(columns={'sales': 'quantity_sold'}, inplace=True)
-    combined_df = stock_df.merge(sales_data_dedup, on='product_id', how='left')
+    combined_df = stock_df.merge(sales_data_dedup, on='product_id', how='left', validate='1:1')
     return combined_df
 
 def update_stock(input_df: DataFrame) -> DataFrame:
     # Subtract sales from stock
     input_df['stock'] = input_df['quantity_in_stock'] - input_df['quantity_sold'].fillna(0)
     # Update the 'last_stock_update' date where a sale occurred
-    input_df.loc[input_df['quantity_sold'] > 0, 'last_stock_update'] = input_df['date']
+    mask = input_df['quantity_sold'] > 0
+    input_df.loc[mask, 'last_stock_update'] = input_df.loc[mask, 'date']
    
     return input_df
 
