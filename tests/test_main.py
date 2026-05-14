@@ -2,7 +2,7 @@ import csv
 import os
 import pytest
 
-from helpers import read_csv
+from helpers import read_csv, merge_data
 
 @pytest.fixture(scope="module")
 def stock_file():
@@ -60,3 +60,18 @@ def test_read_sales_csv(sales_file):
     assert len(sales_data) == expected_length
     assert sales_data[1][0] == expected_id
     assert sales_data[1][1] == expected_quantity
+
+
+def test_datasets_merged(stock_file, sales_file):
+    # Arrange - set up input and expected output
+    stock_data = read_csv('stock_data.csv')
+    sales_data = read_csv('sales_data.csv')
+    expected_columns = 11
+    expected_quantity = 5
+
+    # Act
+    merged_data = merge_data(stock_data, sales_data)
+
+    # Assert
+    assert len(merged_data[0]) == expected_columns
+    assert merged_data[1][9] == expected_quantity
